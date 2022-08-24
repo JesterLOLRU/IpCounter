@@ -1,40 +1,34 @@
 package ru.tsvirko;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import ru.tsvirko.service.UniqueIp;
+import ru.tsvirko.service.impl.UniqueIpImpl;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UniqueIpTest {
 
     @Test
-    public void testCountIp1(){
-        String fileName = "test_case1.txt";
+    public void shouldCountIpsAndReturnTheirCount(){
+        String fileName = "D:\\IpCounter\\src\\test\\java\\resources\\test_case1.txt";
         UniqueIp uniqueIp = new UniqueIpImpl();
         long res = uniqueIp.countUniqueIp(fileName);
         assertEquals(99206, res);
     }
 
     @Test
-    public void testCountIp2(){
-        String fileName = "test_case2.txt";
+    public void shouldReturnZeroCuzWrongFilePath() {
+        String fileName = "abrakadabra";
         UniqueIp uniqueIp = new UniqueIpImpl();
         long res = uniqueIp.countUniqueIp(fileName);
-        assertEquals(999169, res);
+        assertEquals(0, res);
     }
 
     @Test
-    public void testCountIp3(){
-        String fileName = "test_case3.txt";
+    public void shouldReturnZeroCuzIpValidationFailed() {
+        String fileName = "D:\\IpCounter\\src\\test\\java\\resources\\test_case2.txt";
         UniqueIp uniqueIp = new UniqueIpImpl();
         long res = uniqueIp.countUniqueIp(fileName);
-        assertEquals(2997843, res);
+        assertEquals(0, res);
     }
-
-    @Test
-    public void testCountIpWrongFileName(){
-        String fileName = "blabla123.txt";
-        UniqueIp uniqueIp = new UniqueIpImpl();
-        long res = uniqueIp.countUniqueIp(fileName);
-        assertEquals(-1, res);
-    }
-
 }
